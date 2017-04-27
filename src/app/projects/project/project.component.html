@@ -14,3 +14,6 @@
 </select>
 <button class="btn btn-primary" (click)="onUpdateStatus(prjStatus.value)">Update Status</button>
 <button class="btn btn-danger" (click)="onDelete()">Delete Project</button>
+<a [routerLink]="[projectId]" class="list-group-item clearfix">
+  Details
+</a>

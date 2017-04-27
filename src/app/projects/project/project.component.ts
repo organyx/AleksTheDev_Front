@@ -8,6 +8,7 @@ import { Project } from 'app/projects/project.model';
 })
 export class ProjectComponent implements OnInit {
   @Input() project: Project;
+  @Input() projectId: number;
   constructor() { }
 
   ngOnInit() {
