@@ -16,6 +16,7 @@ import { BlogComponent } from './blog/blog.component';
 import { LabsComponent } from './labs/labs.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from 'app/app-routing.module';
+import { ProjectInfoComponent } from './projects/project-info/project-info.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AppRoutingModule } from 'app/app-routing.module';
     ProjectNewComponent,
     BlogComponent,
     LabsComponent,
-    HomeComponent
+    HomeComponent,
+    ProjectInfoComponent
   ],
   imports: [
     BrowserModule,

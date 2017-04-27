@@ -1,11 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
+import { Http, Headers, Response } from '@angular/http';
 
 import { Project } from 'app/projects/project.model';
 
 @Injectable()
 export class ProjectsService {
+
+  recChanged = new EventEmitter<Project[]>();
+
   private projects: Project[] = [
     { name: 'Learn Angular Styles', 
       description: 'Practice hard to understand how you may style components and update styles dynamically', 
@@ -20,7 +24,7 @@ export class ProjectsService {
       description: 'Absolutely required to dive deep into Angular and all its features', 
       status: 'critical'},
   ];
-  constructor() { }
+  constructor(private http: Http) { }
 
   loadProjects(): Observable<Project[]> {
     const prjLoader = Observable.create((observer: Observer<Project[]>) => {
@@ -29,6 +33,26 @@ export class ProjectsService {
       }, 2000);
     });
     return prjLoader;
+  }
+
+  getProjects() {
+    return this.projects;
+  }
+
+  getProject(projectId: number) {
+    return this.projects[projectId];
+  }
+
+  deleteProject(project: Project) {
+    this.projects.splice(this.projects.indexOf(project), 1);
+  }
+
+  addProject(project: Project) {
+    this.projects.push(project);
+  }
+
+  editProject(oldPrj: Project, newPrj: Project) {
+    this.projects[this.projects.indexOf(oldPrj)] = newPrj;
   }
 
 }
