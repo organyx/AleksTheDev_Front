@@ -17,21 +17,18 @@ import { LabsComponent } from './labs/labs.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { ProjectInfoComponent } from './projects/project-info/project-info.component';
+import { ProjectsRoutingModule } from 'app/projects/projects-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProjectsComponent,
     UsersComponent,
     HeaderComponent,
     ContactComponent,
     FooterComponent,
-    ProjectComponent,
-    ProjectNewComponent,
     BlogComponent,
     LabsComponent,
     HomeComponent,
-    ProjectInfoComponent
   ],
   imports: [
     BrowserModule,

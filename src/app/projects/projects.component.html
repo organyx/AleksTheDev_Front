@@ -1,15 +1,1 @@
-<div class="row">
-  <div class="col-xs-12">
-    <div
-      class="loading-bar"
-      *ngIf="!projects">
-      <div
-        class="loading-bar-element"
-        *ngIf="progress != 'finished'"></div>
-    </div>
-    <app-project
-      *ngFor="let prj of projects; let i = index"
-      [project]="prj"
-      (click)="markedPrjIndex = i"></app-project>
-  </div>
-</div>
+<router-outlet></router-outlet>

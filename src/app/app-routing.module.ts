@@ -7,7 +7,7 @@ import { BlogComponent } from 'app/blog/blog.component';
 import { HomeComponent } from 'app/home/home.component';
 
 const appRoutes: Routes = [
-    { path: 'projects', component: ProjectsComponent },
+    { path: 'projects', loadChildren: 'app/projects/projects.module#ProjectsModule' },
     { path: 'blog', component: BlogComponent },
     { path: 'labs', component: LabsComponent },
     { path: '', component: HomeComponent }
