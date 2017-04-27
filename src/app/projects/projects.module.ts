@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ProjectsComponent } from 'app/projects/projects.component';
 import { ProjectComponent } from 'app/projects/project/project.component';
@@ -18,6 +19,7 @@ import { ProjectsStartComponent } from './projects-start/projects-start.componen
     ],
     imports: [
         CommonModule,
+        ReactiveFormsModule,
         ProjectsRoutingModule
     ]
 })

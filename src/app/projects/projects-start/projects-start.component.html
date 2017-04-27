@@ -7,6 +7,11 @@
         class="loading-bar-element"
         *ngIf="progress != 'finished'"></div>
     </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <a class="btn btn-success" [routerLink]="['new']">New Project</a>
+      </div>
+    </div>
     <app-project
       *ngFor="let prj of projects; let i = index"
       [project]="prj"
