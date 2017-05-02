@@ -47,13 +47,13 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
 
   private initForm() {
     let projectName = '';
-    // let projectImageUrls = '';
+    let projectImageUrls = '';
     let projectDescription = '';
     let projectStatus = '';
 
     if(!this.isNew) {
       projectName = this.project.name;
-      // projectImageUrls = this.project.imageUrls;
+      projectImageUrls = this.project.imageUrls;
       projectDescription = this.project.description;
       projectStatus = this.project.status;
     }
@@ -61,7 +61,7 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
       this.projectForm = this.formBuilder.group({
         name: [projectName, Validators.required],
         status: [projectStatus],
-        // imgsPath: [projectImageUrls, Validators.required],
+        imageUrls: [projectImageUrls],
         description: [projectDescription, Validators.required]
       });
   }
