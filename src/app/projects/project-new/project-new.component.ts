@@ -60,9 +60,9 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
 
       this.projectForm = this.formBuilder.group({
         name: [projectName, Validators.required],
+        status: [projectStatus],
         // imgsPath: [projectImageUrls, Validators.required],
-        description: [projectDescription, Validators.required],
-        projectStatus: [projectStatus]
+        description: [projectDescription, Validators.required]
       });
   }
 

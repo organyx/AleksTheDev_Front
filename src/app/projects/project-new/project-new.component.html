@@ -19,6 +19,22 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select 
+              id="status" 
+              formControlName="status"
+              #prjStatus 
+              class="form-control">
+              <option value="active" [selected]="project.status === 'active'">Active</option>
+              <option value="inactive" [selected]="project.status === 'inactive'">Inactive</option>
+              <option value="critical" [selected]="project.status === 'critical'">Critical</option>
+            </select>
+          </div>
+        </div>
+      </div>
       <!--<div class="row">
         <div class="col-xs-12">
           <div class="form-group">
