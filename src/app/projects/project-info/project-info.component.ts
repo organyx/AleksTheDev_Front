@@ -14,8 +14,9 @@ import { ProjectsService } from 'app/projects/projects.service';
 export class ProjectInfoComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
-  private projectIndex: number;
+  private projectIndex: string;
   selectedProject: Project;
+  errorMessage: string;
 
   constructor(
     private projectService: ProjectsService,
@@ -27,7 +28,14 @@ export class ProjectInfoComponent implements OnInit, OnDestroy {
     this.subscription = this.route.params.subscribe(
       (params: any) => {
         this.projectIndex = params['id'];
-        this.selectedProject = this.projectService.getProject(this.projectIndex);
+        // this.selectedProject = this.projectService.getProject(this.projectIndex);
+
+        this.projectService.getProjectAPI(this.projectIndex)
+            .subscribe(
+              project => this.selectedProject = project,
+              error => this.errorMessage = <any>error,
+              () => console.log('ProjectInfoComponent', this.selectedProject)
+            );
       }
     );
   }
@@ -41,7 +49,13 @@ export class ProjectInfoComponent implements OnInit, OnDestroy {
   }
 
   onDelete() {
-    this.projectService.deleteProject(this.selectedProject);
+    // this.projectService.deleteProject(this.selectedProject);
+    this.projectService.deleteProjectAPI(this.projectIndex)
+            .subscribe(
+              project => this.selectedProject = project,
+              error => this.errorMessage = <any>error,
+              () => console.log('ProjectInfoComponent', this.selectedProject)
+            );
     this.router.navigate(['/projects']);
   }
 

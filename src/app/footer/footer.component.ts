@@ -10,6 +10,7 @@ import { Project } from 'app/projects/project.model';
 export class FooterComponent implements OnInit {
   errorMessage: string;
   projects: Project[];
+  project: Project;
 
   constructor(private service: ProjectsService) { }
 
@@ -23,6 +24,14 @@ export class FooterComponent implements OnInit {
         error => this.errorMessage = <any>error,
         () => console.log('FooterComponent', this.projects)
       );
+  }
+
+  getProject() {
+    this.service.getProjectAPI('5913613b81816d05c40a2246')
+      .subscribe(
+        project => this.project = project,
+        error => this.errorMessage = <any>error,
+        () => console.log('FooterComponent', this.project));
   }
 
 }

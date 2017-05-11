@@ -14,10 +14,11 @@ import { ProjectsService } from 'app/projects/projects.service';
 })
 export class ProjectNewComponent implements OnInit, OnDestroy {
   projectForm: FormGroup;
-  private projectIndex: number;
+  private projectIndex: string;
   private subscription: Subscription;
   private project: Project;
   private isNew = true;
+  errorMessage: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -31,14 +32,26 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
       (params: any) => {
         if(params.hasOwnProperty('id')) {
           this.isNew = false;
-          this.projectIndex = +params['id'];
+          this.projectIndex = params['id'];
           // this.projectService.getProject(this.projectIndex).subscribe(data => this.project);
-          this.project = this.projectService.getProject(this.projectIndex);
+          // this.project = this.projectService.getProject(this.projectIndex);
+          // console.log('ProjectNewComponent', this.projectIndex);
+          this.projectService.getProjectAPI(this.projectIndex)
+            .subscribe(
+              project => this.project = project,
+              error => this.errorMessage = <any>error,
+              () => {
+                console.log('ProjectNewComponent', this.project);
+                this.initForm();
+              }
+            );
+
+
         } else {
           this.isNew = true;
           this.project = null;
+          this.initForm();
         }
-        this.initForm();
       }
     );
   }
@@ -54,6 +67,7 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
     let projectStatus = 'active';
 
     if(!this.isNew) {
+      console.log(this.project);
       projectName = this.project.name;
       projectImageUrls = this.project.imageUrls;
       projectDescription = this.project.description;
@@ -73,7 +87,15 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
     if(this.isNew) {
       this.projectService.addProject(newPrj);
     } else {
-      this.projectService.editProject(this.project, newPrj);
+      // this.projectService.editProject(this.project, newPrj);
+      //
+      this.projectService.editProjectAPI(this.projectIndex, newPrj)
+            .subscribe(
+              project => this.project = project,
+              error => this.errorMessage = <any>error,
+              () => console.log('ProjectNewComponent', this.project)
+            );
+      //
     }
     this.navigateBack();
   }

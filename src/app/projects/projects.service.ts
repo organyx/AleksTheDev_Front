@@ -36,35 +36,63 @@ export class ProjectsService {
   ];
   constructor(private http: Http) { }
 
-  loadProjects(): Observable<Project[]> {
-    const prjLoader = Observable.create((observer: Observer<Project[]>) => {
-      setTimeout(() => {
-        observer.next(this.projects);
-      }, 2000);
-    });
-    return prjLoader;
-  }
+  // loadProjects(): Observable<Project[]> {
+  //   const prjLoader = Observable.create((observer: Observer<Project[]>) => {
+  //     setTimeout(() => {
+  //       observer.next(this.projects);
+  //     }, 2000);
+  //   });
+  //   return prjLoader;
+  // }
 
-  getProjects() {
-    return this.projects;
+  // getProjects() {
+  //   return this.projects;
+  // }
+
+  getProjects(): Observable<Project[]> {
+     return this.http.get(`http://localhost:3000/api/v1/projects`)
+                  .map(this.extractData)
+                  .catch(this.handleError);
   }
 
   getProject(projectId: number) {
     return this.projects[projectId];
-    // return this.http.get(`http://localhost:3000/api/v1/projects/${projectId}`)
-    // .map((res:Response) => res.json());
+  }
+
+  getProjectAPI(projectId: string): Observable<Project>  {
+    return this.http.get(`http://localhost:3000/api/v1/projects/${projectId}`)
+            .map(this.extractData)
+            .catch(this.handleError);
   }
 
   deleteProject(project: Project) {
     this.projects.splice(this.projects.indexOf(project), 1);
   }
 
+  deleteProjectAPI(projectId: string) {
+    return this.http.delete(`http://localhost:3000/api/v1/projects/${projectId}`)
+            .map(this.extractData)
+            .catch(this.handleError);
+  }
+
   addProject(project: Project) {
+    this.projects.push(project);
+  }
+
+  addProjectAPI(project: Project) {
     this.projects.push(project);
   }
 
   editProject(oldPrj: Project, newPrj: Project) {
     this.projects[this.projects.indexOf(oldPrj)] = newPrj;
+  }
+
+  editProjectAPI(projectId: string, newPrj: Project) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put(`http://localhost:3000/api/v1/projects/${projectId}`, JSON.stringify(newPrj), { headers: headers })
+            .map(this.extractData)
+            .catch(this.handleError);
   }
 
   getProjectsApi(): Observable<Project[]> {

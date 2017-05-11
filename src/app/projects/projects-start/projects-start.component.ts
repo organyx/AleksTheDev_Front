@@ -9,6 +9,7 @@ import { ProjectsService } from 'app/projects/projects.service';
 })
 export class ProjectsStartComponent implements OnInit {
 
+  errorMessage: string;
   projects: Project[];
   displayedProjects: Project[] = [];
   markedPrjIndex = 0;
@@ -18,11 +19,24 @@ export class ProjectsStartComponent implements OnInit {
   constructor(private prjService: ProjectsService) { }
 
   ngOnInit() {
-    this.prjService.loadProjects()
+    // this.prjService.loadProjects()
+    //   .subscribe(
+    //     (prj: Project[]) => {
+    //       this.progress = 'finished';
+    //       this.projects = prj;
+    //       if (this.projects.length >= 1) {
+    //         this.displayedProjects.push(this.projects[0]);
+    //       }
+    //     }
+    //   );
+
+    this.prjService.getProjectsApi()
       .subscribe(
-        (prj: Project[]) => {
+        projects => this.projects = projects,
+        error => this.errorMessage = <any>error,
+        () => {
+          console.log('ProjectsStartComponent', this.projects);
           this.progress = 'finished';
-          this.projects = prj;
           if (this.projects.length >= 1) {
             this.displayedProjects.push(this.projects[0]);
           }
