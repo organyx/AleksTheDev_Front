@@ -13,10 +13,18 @@ export class ProjectsService {
   private projects: Project[] = [
     { name: 'Learn Angular Styles', 
       description: 'Practice hard to understand how you may style components and update styles dynamically', 
-      status: 'active'},
+      status: 'active',
+      imageUrls: [
+        'http://www.personal.psu.edu/users/n/y/nys5290/Project-Image.jpg',
+        'http://www.prince2.site/wp-content/uploads/2015/09/project.jpg']
+    },
     { name: 'Learn Angular Animations', 
-      description: 'Learn how Angular helps with animating elements on your page', 
-      status: 'active'},
+      description: 'Learn how Angular helps with animating elements on your page',
+      status: 'active',
+      imageUrls: [
+        'http://www.personal.psu.edu/users/n/y/nys5290/Project-Image.jpg',
+        'http://www.prince2.site/wp-content/uploads/2015/09/project.jpg']
+    },
     { name: 'Understanding Angular Basics', 
       description: 'Understand what Angular is, how it works and how and when you might use it', 
       status: 'inactive'},

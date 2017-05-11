@@ -47,9 +47,9 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
 
   private initForm() {
     let projectName = '';
-    let projectImageUrls = '';
+    let projectImageUrls = [''];
     let projectDescription = '';
-    let projectStatus = '';
+    let projectStatus = 'active';
 
     if(!this.isNew) {
       projectName = this.project.name;
