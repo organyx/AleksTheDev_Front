@@ -41,12 +41,10 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
               project => this.project = project,
               error => this.errorMessage = <any>error,
               () => {
-                console.log('ProjectNewComponent', this.project);
+                // console.log('ProjectNewComponent', this.project);
                 this.initForm();
               }
             );
-
-
         } else {
           this.isNew = true;
           this.project = null;
@@ -62,7 +60,7 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
 
   private initForm() {
     let projectName = '';
-    let projectImageUrls = [''];
+    let projectImageUrls = [];
     let projectDescription = '';
     let projectStatus = 'active';
 

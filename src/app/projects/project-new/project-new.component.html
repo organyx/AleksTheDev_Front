@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12">
-    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+    <form *ngIf="projectForm" [formGroup]="projectForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-xs-12">
           <button type="submit" class="btn btn-success" [disabled]="!projectForm.valid">Save</button>
