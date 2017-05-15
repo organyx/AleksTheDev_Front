@@ -79,15 +79,19 @@ export class ProjectsService {
     this.projects.push(project);
   }
 
-  addProjectAPI(project: Project) {
-    this.projects.push(project);
+  addProjectAPI(project: Project): Observable<Project> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(`http://localhost:3000/api/v1/projects/new`, JSON.stringify(project), { headers: headers })
+            .map(this.extractData)
+            .catch(this.handleError);
   }
 
   editProject(oldPrj: Project, newPrj: Project) {
     this.projects[this.projects.indexOf(oldPrj)] = newPrj;
   }
 
-  editProjectAPI(projectId: string, newPrj: Project) {
+  editProjectAPI(projectId: string, newPrj: Project): Observable<Project> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.put(`http://localhost:3000/api/v1/projects/${projectId}`, JSON.stringify(newPrj), { headers: headers })

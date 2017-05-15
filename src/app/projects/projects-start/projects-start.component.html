@@ -15,7 +15,7 @@
     <app-project
       *ngFor="let prj of projects; let i = index"
       [project]="prj"
-      [projectId] = "i"
-      (click)="markedPrjIndex = i"></app-project>
+      [projectId] = "prj._id"
+      (click)="markedPrjIndex = prj._id"></app-project>
   </div>
 </div>

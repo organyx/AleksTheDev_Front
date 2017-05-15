@@ -85,7 +85,13 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
   onSubmit() {
     const newPrj = this.projectForm.value;
     if(this.isNew) {
-      this.projectService.addProject(newPrj);
+      // this.projectService.addProject(newPrj);
+      this.projectService.addProjectAPI(newPrj)
+            .subscribe(
+              project => this.project = project,
+              error => this.errorMessage = <any>error,
+              () => console.log('ProjectNewComponent', this.project)
+            );
     } else {
       // this.projectService.editProject(this.project, newPrj);
       //
