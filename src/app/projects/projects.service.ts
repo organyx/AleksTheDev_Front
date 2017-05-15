@@ -4,6 +4,7 @@ import { Observer } from 'rxjs/Observer';
 import { Http, Headers, Response } from '@angular/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/finally';
 
 import { Project } from 'app/projects/project.model';
 
@@ -38,9 +39,7 @@ export class ProjectsService {
 
   // loadProjects(): Observable<Project[]> {
   //   const prjLoader = Observable.create((observer: Observer<Project[]>) => {
-  //     setTimeout(() => {
-  //       observer.next(this.projects);
-  //     }, 2000);
+  //     observer.next(this.projects);
   //   });
   //   return prjLoader;
   // }
@@ -100,9 +99,11 @@ export class ProjectsService {
   }
 
   getProjectsApi(): Observable<Project[]> {
+      // this.recChanged.emit(this.projects);
      return this.http.get(`http://localhost:3000/api/v1/projects`)
                   .map(this.extractData)
                   .catch(this.handleError);
+                  // .finally(() => this.recChanged.emit(this.projects));
   }
 
   private extractData(res: Response) {
@@ -112,7 +113,7 @@ export class ProjectsService {
   }
 
   private handleError (error: Response | any) {
-    // In a real world app, you might use a remote logging infrastructure
+    // In a real world app, figure out remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';

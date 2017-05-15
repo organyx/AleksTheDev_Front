@@ -88,7 +88,11 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
             .subscribe(
               project => this.project = project,
               error => this.errorMessage = <any>error,
-              () => console.log('ProjectNewComponent', this.project)
+              () => {
+                console.log('ProjectNewComponent', this.project);
+                // this.projectService.getProjectsApi();
+                this.navigateBack();
+              }
             );
     } else {
       // this.projectService.editProject(this.project, newPrj);
@@ -97,11 +101,15 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
             .subscribe(
               project => this.project = project,
               error => this.errorMessage = <any>error,
-              () => console.log('ProjectNewComponent', this.project)
+              () => {
+                console.log('ProjectNewComponent', this.project);
+                // this.projectService.getProjectsApi();
+                this.navigateBack();
+              }
             );
       //
     }
-    this.navigateBack();
+    
   }
 
   private navigateBack() {

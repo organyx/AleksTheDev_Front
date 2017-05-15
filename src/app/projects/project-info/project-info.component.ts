@@ -54,9 +54,11 @@ export class ProjectInfoComponent implements OnInit, OnDestroy {
             .subscribe(
               project => this.selectedProject = project,
               error => this.errorMessage = <any>error,
-              () => console.log('ProjectInfoComponent', this.selectedProject)
+              () => {
+                console.log('ProjectInfoComponent', this.selectedProject);
+                this.router.navigate(['/projects']);
+              }
             );
-    this.router.navigate(['/projects']);
   }
 
 }

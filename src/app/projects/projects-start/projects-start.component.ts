@@ -21,9 +21,10 @@ export class ProjectsStartComponent implements OnInit {
   ngOnInit() {
     // this.prjService.loadProjects()
     //   .subscribe(
-    //     (prj: Project[]) => {
+    //     projects => this.projects = projects,
+    //     error => this.errorMessage = <any>error,
+    //     () => {
     //       this.progress = 'finished';
-    //       this.projects = prj;
     //       if (this.projects.length >= 1) {
     //         this.displayedProjects.push(this.projects[0]);
     //       }
@@ -42,5 +43,8 @@ export class ProjectsStartComponent implements OnInit {
           }
         }
       );
+    // this.prjService.recChanged.subscribe(
+    //   (projects: Project[]) => this.projects = projects
+    // );
   }
 }
