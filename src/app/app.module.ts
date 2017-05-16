@@ -4,20 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { ProjectsComponent } from './projects/projects.component';
 import { UsersComponent } from './users/users.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProjectsService } from 'app/projects/projects.service';
-import { ProjectComponent } from './projects/project/project.component';
-import { ProjectNewComponent } from './projects/project-new/project-new.component';
 import { BlogComponent } from './blog/blog.component';
 import { LabsComponent } from './labs/labs.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from 'app/app-routing.module';
-import { ProjectInfoComponent } from './projects/project-info/project-info.component';
-import { ProjectsRoutingModule } from 'app/projects/projects-routing.module';
+import { AuthService } from 'app/auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +24,7 @@ import { ProjectsRoutingModule } from 'app/projects/projects-routing.module';
     FooterComponent,
     BlogComponent,
     LabsComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +32,7 @@ import { ProjectsRoutingModule } from 'app/projects/projects-routing.module';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ProjectsService],
+  providers: [ProjectsService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
