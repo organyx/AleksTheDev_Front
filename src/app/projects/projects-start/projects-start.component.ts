@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Project } from 'app/projects/project.model';
 import { ProjectsService } from 'app/projects/projects.service';
+import { AuthService } from 'app/auth/auth.service';
 
 @Component({
   selector: 'app-projects-start',
@@ -16,7 +18,7 @@ export class ProjectsStartComponent implements OnInit {
   progress = 'progressing';
   createNew = false;
 
-  constructor(private prjService: ProjectsService) { }
+  constructor(private prjService: ProjectsService, private authService: AuthService) { }
 
   ngOnInit() {
     // this.prjService.loadProjects()
@@ -46,5 +48,9 @@ export class ProjectsStartComponent implements OnInit {
     // this.prjService.recChanged.subscribe(
     //   (projects: Project[]) => this.projects = projects
     // );
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 }

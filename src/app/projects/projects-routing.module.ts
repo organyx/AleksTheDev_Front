@@ -6,13 +6,14 @@ import { ProjectsComponent } from 'app/projects/projects.component';
 import { ProjectInfoComponent } from 'app/projects/project-info/project-info.component';
 import { ProjectNewComponent } from 'app/projects/project-new/project-new.component';
 import { ProjectsStartComponent } from 'app/projects/projects-start/projects-start.component';
+import { AuthGuard } from 'app/guards/auth.guard';
 
 const projectsRoutes: Routes = [
     { path: '', component: ProjectsComponent, children: [
         { path: '', component: ProjectsStartComponent },
-        { path: 'new', component: ProjectNewComponent },
+        { path: 'new', component: ProjectNewComponent, canActivate: [AuthGuard] },
         { path: ':id', component: ProjectInfoComponent },
-        { path: ':id/edit', component: ProjectNewComponent}
+        { path: ':id/edit', component: ProjectNewComponent, canActivate: [AuthGuard]}
     ]}
 ];
 

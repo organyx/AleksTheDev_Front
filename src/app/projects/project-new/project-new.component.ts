@@ -117,8 +117,11 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
   }
 
   onCancel() {
-    // this.navigateBack();
-    this.router.navigate(['../projects', this.projectIndex]);
+    if(this.isNew) {
+      this.navigateBack();
+    } else {
+      this.router.navigate(['../projects', this.projectIndex]);
+    }
   }
 
 }

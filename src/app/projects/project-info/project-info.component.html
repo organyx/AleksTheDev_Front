@@ -14,8 +14,8 @@
     </div>
   </div>
   <div class="col-xs-12">
-    <button class="btn btn-primary" (click)="onEdit()">Edit</button>
-    <button class="btn btn-danger" (click)="onDelete()">Delete</button>
+    <button *ngIf="isLoggedIn()" class="btn btn-primary" (click)="onEdit()">Edit</button>
+    <button *ngIf="isLoggedIn()" class="btn btn-danger" (click)="onDelete()">Delete</button>
   </div>
 </div>
 <hr>

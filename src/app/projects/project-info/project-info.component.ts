@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Rx';
 
 import { Project } from 'app/projects/project.model';
 import { ProjectsService } from 'app/projects/projects.service';
+import { AuthService } from 'app/auth/auth.service';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class ProjectInfoComponent implements OnInit, OnDestroy {
 
   constructor(
     private projectService: ProjectsService,
+    private authService: AuthService,
     private route: ActivatedRoute,
     private router: Router
   ) { }
@@ -59,6 +61,10 @@ export class ProjectInfoComponent implements OnInit, OnDestroy {
                 this.router.navigate(['/projects']);
               }
             );
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 
 }

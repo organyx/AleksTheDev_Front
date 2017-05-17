@@ -14,6 +14,7 @@ import { LabsComponent } from './labs/labs.component';
 import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { AuthService } from 'app/auth/auth.service';
+import { AuthGuard } from 'app/guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { AuthService } from 'app/auth/auth.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ProjectsService, AuthService],
+  providers: [ProjectsService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
