@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -33,6 +34,11 @@ export class AuthService {
 
   isLoggedIn() {
     return localStorage.getItem('token') !== null;
+  }
+
+  getTokenHeader() {
+    const header = new Headers({'Authorization': 'JWT ' + localStorage.getItem('token')});
+    return header;
   }
 
   private extractData(res: Response) {

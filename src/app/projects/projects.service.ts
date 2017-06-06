@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/finally';
 
 import { Project } from 'app/projects/project.model';
+import { AuthService } from 'app/auth/auth.service';
 
 @Injectable()
 export class ProjectsService {
@@ -35,7 +36,7 @@ export class ProjectsService {
       description: 'Absolutely required to dive deep into Angular and all its features', 
       status: 'critical'},
   ];
-  constructor(private http: Http) { }
+  constructor(private http: Http, private authService: AuthService) { }
 
   // loadProjects(): Observable<Project[]> {
   //   const prjLoader = Observable.create((observer: Observer<Project[]>) => {
@@ -69,7 +70,8 @@ export class ProjectsService {
   }
 
   deleteProjectAPI(projectId: string) {
-    return this.http.delete(`http://localhost:3000/api/v1/projects/${projectId}`)
+    let headers = this.authService.getTokenHeader();
+    return this.http.delete(`http://localhost:3000/api/v1/projects/${projectId}`, { headers: headers})
             .map(this.extractData)
             .catch(this.handleError);
   }
@@ -79,7 +81,7 @@ export class ProjectsService {
   }
 
   addProjectAPI(project: Project): Observable<Project> {
-    let headers = new Headers();
+    let headers = this.authService.getTokenHeader();
     headers.append('Content-Type', 'application/json');
     return this.http.post(`http://localhost:3000/api/v1/projects/new`, JSON.stringify(project), { headers: headers })
             .map(this.extractData)
@@ -91,7 +93,7 @@ export class ProjectsService {
   }
 
   editProjectAPI(projectId: string, newPrj: Project): Observable<Project> {
-    let headers = new Headers();
+    let headers = this.authService.getTokenHeader();
     headers.append('Content-Type', 'application/json');
     return this.http.put(`http://localhost:3000/api/v1/projects/${projectId}`, JSON.stringify(newPrj), { headers: headers })
             .map(this.extractData)
