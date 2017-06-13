@@ -1,0 +1,7 @@
+<div class="row">
+  <app-home-featured-item 
+    *ngFor="let prj of projects; let i = index"
+    [project]="prj"
+    [projectId] = "prj._id"
+  ></app-home-featured-item>
+</div>

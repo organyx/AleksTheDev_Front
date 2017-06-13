@@ -15,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { AppRoutingModule } from 'app/app-routing.module';
 import { AuthService } from 'app/auth/auth.service';
 import { AuthGuard } from 'app/guards/auth.guard';
+import { HomeFeaturedComponent } from './home/home-featured/home-featured.component';
+import { HomeFeaturedItemComponent } from './home/home-featured/home-featured-item/home-featured-item.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { AuthGuard } from 'app/guards/auth.guard';
     FooterComponent,
     BlogComponent,
     LabsComponent,
-    HomeComponent
+    HomeComponent,
+    HomeFeaturedComponent,
+    HomeFeaturedItemComponent
   ],
   imports: [
     BrowserModule,
