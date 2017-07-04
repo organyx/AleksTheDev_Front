@@ -1,7 +1,7 @@
-<h3>
-  {{ project.name }}
-  <!-- Show different usages of ngClass and ngStyle"-->
-  <span
+<!--<h3>
+  {{ project.name }}-->
+<!-- Show different usages of ngClass and ngStyle"-->
+<!--<span
     class="label"
     [ngClass]="getPrjStatusClass()">{{ project.status }}</span>
 </h3>
@@ -9,4 +9,15 @@
 <p>{{ project.description }}</p>
 <a [routerLink]="[projectId]" class="list-group-item clearfix">
   Details
+</a>-->
+
+
+<a [routerLink]="[projectId]" class="list-group-item clearfix">
+  <h3>
+    {{ project.name }}
+    <!-- Show different usages of ngClass and ngStyle"-->
+    <span class="label" [ngClass]="getPrjStatusClass()">{{ project.status }}</span>
+  </h3>
+  <hr>
+  <p>{{ project.description }}</p>
 </a>
