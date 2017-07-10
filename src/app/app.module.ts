@@ -23,7 +23,6 @@ import { HomeFeaturedItemComponent } from './home/home-featured/home-featured-it
     AppComponent,
     UsersComponent,
     HeaderComponent,
-    ContactComponent,
     FooterComponent,
     BlogComponent,
     LabsComponent,

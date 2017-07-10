@@ -12,7 +12,7 @@ const appRoutes: Routes = [
     { path: 'projects', loadChildren: 'app/projects/projects.module#ProjectsModule' },
     { path: 'blog', component: BlogComponent },
     { path: 'labs', component: LabsComponent },
-    { path: 'contact', component: ContactComponent },
+    { path: 'contact', loadChildren: 'app/contact/contact.module#ContactModule' },
     { path: 'auth', loadChildren: 'app/auth/auth.module#AuthModule'},
     { path: '', component: HomeComponent }
 ];
