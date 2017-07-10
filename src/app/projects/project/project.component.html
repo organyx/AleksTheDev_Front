@@ -1,23 +1,7 @@
-<!--<h3>
-  {{ project.name }}-->
-<!-- Show different usages of ngClass and ngStyle"-->
-<!--<span
-    class="label"
-    [ngClass]="getPrjStatusClass()">{{ project.status }}</span>
-</h3>
-<hr>
-<p>{{ project.description }}</p>
-<a [routerLink]="[projectId]" class="list-group-item clearfix">
-  Details
-</a>-->
-
-
-<a [routerLink]="[projectId]" class="list-group-item clearfix">
-  <h3>
-    {{ project.name }}
-    <!-- Show different usages of ngClass and ngStyle"-->
-    <span class="label" [ngClass]="getPrjStatusClass()">{{ project.status }}</span>
-  </h3>
-  <hr>
-  <p>{{ project.description }}</p>
+<a [routerLink]="[projectId]" class="list-group-item clearfix col-xs-12 col-sm-6 col-md-4 col-lg-4">
+    <span class="label label-success label-hover" [ngClass]="getPrjStatusClass()"> {{ project.status }}</span>
+    <img src="https://img-9gag-fun.9cache.com/photo/ax0Z502_700b.jpg" class="img-responsive center-block" alt="replace the pic">
+  <div class="caption">
+    <h3>{{ project.name }}</h3>
+  </div>
 </a>
