@@ -1,0 +1,10 @@
+/* .nav {
+    border: 0;
+    border-radius: 0;
+} */
+
+.navbar {
+    border: 0;
+    margin-bottom: 0;
+    border-radius: 0;
+}
