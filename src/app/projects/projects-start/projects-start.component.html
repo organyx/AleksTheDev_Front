@@ -12,7 +12,7 @@
         <a class="btn btn-success" [routerLink]="['new']">New Project</a>
       </div>
     </div>
-    <app-project class="col-xs-12 col-sm-12 col-md-6 col-lg-4"
+    <app-project class="col-xs-10 col-sm-6 col-md-3 col-lg-3"
       *ngFor="let prj of projects; let i = index"
       [project]="prj"
       [projectId] = "prj._id"
