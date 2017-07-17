@@ -190,3 +190,7 @@ body {
   display: inline-block;
   margin: 0 8px;
 }
+
+.navbar {
+  border: 0;
+}
