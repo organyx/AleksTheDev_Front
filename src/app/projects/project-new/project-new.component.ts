@@ -30,20 +30,16 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscription = this.route.params.subscribe(
       (params: any) => {
-        if(params.hasOwnProperty('id')) {
+        if (params.hasOwnProperty('id')) {
           this.isNew = false;
           this.projectIndex = params['id'];
-          // this.projectService.getProject(this.projectIndex).subscribe(data => this.project);
-          // this.project = this.projectService.getProject(this.projectIndex);
-          // console.log('ProjectNewComponent', this.projectIndex);
           this.projectService.getProjectAPI(this.projectIndex)
             .subscribe(
-              project => this.project = project,
-              error => this.errorMessage = <any>error,
-              () => {
-                // console.log('ProjectNewComponent', this.project);
-                this.initForm();
-              }
+            project => this.project = project,
+            error => this.errorMessage = <any>error,
+            () => {
+              this.initForm();
+            }
             );
         } else {
           this.isNew = true;
@@ -60,56 +56,49 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
 
   private initForm() {
     let projectName = '';
-    let projectImageUrls = [];
+    let projectImageUrls = [''];
     let projectDescription = '';
     let projectStatus = 'active';
 
-    if(!this.isNew) {
+    if (!this.isNew) {
       console.log(this.project);
       projectName = this.project.name;
-      projectImageUrls = this.project.imageUrls;
+      projectImageUrls = this.project.imgsUrls;
       projectDescription = this.project.description;
       projectStatus = this.project.status;
     }
 
-      this.projectForm = this.formBuilder.group({
-        name: [projectName, Validators.required],
-        status: [projectStatus],
-        imageUrls: [projectImageUrls],
-        description: [projectDescription, Validators.required]
-      });
+    this.projectForm = this.formBuilder.group({
+      name: [projectName, Validators.required],
+      status: [projectStatus],
+      imageUrls: [projectImageUrls],
+      description: [projectDescription, Validators.required]
+    });
   }
 
   onSubmit() {
     const newPrj = this.projectForm.value;
-    if(this.isNew) {
-      // this.projectService.addProject(newPrj);
+    if (this.isNew) {
       this.projectService.addProjectAPI(newPrj)
-            .subscribe(
-              project => this.project = project,
-              error => this.errorMessage = <any>error,
-              () => {
-                console.log('ProjectNewComponent', this.project);
-                // this.projectService.getProjectsApi();
-                this.navigateBack();
-              }
-            );
+        .subscribe(
+        project => this.project = project,
+        error => this.errorMessage = <any>error,
+        () => {
+          console.log('ProjectNewComponent', this.project);
+          this.navigateBack();
+        }
+        );
     } else {
-      // this.projectService.editProject(this.project, newPrj);
-      //
       this.projectService.editProjectAPI(this.projectIndex, newPrj)
-            .subscribe(
-              project => this.project = project,
-              error => this.errorMessage = <any>error,
-              () => {
-                console.log('ProjectNewComponent', this.project);
-                // this.projectService.getProjectsApi();
-                this.navigateBack();
-              }
-            );
-      //
+        .subscribe(
+        project => this.project = project,
+        error => this.errorMessage = <any>error,
+        () => {
+          console.log('ProjectNewComponent', this.project);
+          this.navigateBack();
+        }
+        );
     }
-    
   }
 
   private navigateBack() {
@@ -117,7 +106,7 @@ export class ProjectNewComponent implements OnInit, OnDestroy {
   }
 
   onCancel() {
-    if(this.isNew) {
+    if (this.isNew) {
       this.navigateBack();
     } else {
       this.router.navigate(['../projects', this.projectIndex]);
