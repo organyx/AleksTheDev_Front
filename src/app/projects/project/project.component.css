@@ -62,7 +62,7 @@
 
 .label-hover {
   position: absolute;
-  left: 0px;
+  left: -1px;
   top: 50px;
   z-index: 1;
 }
