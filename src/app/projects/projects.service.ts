@@ -14,40 +14,7 @@ export class ProjectsService {
 
   recChanged = new EventEmitter<Project[]>();
 
-  private projects: Project[] = [
-    { name: 'Learn Angular Styles', 
-      description: 'Practice hard to understand how you may style components and update styles dynamically', 
-      status: 'active',
-      imageUrls: [
-        'http://www.personal.psu.edu/users/n/y/nys5290/Project-Image.jpg',
-        'http://www.prince2.site/wp-content/uploads/2015/09/project.jpg']
-    },
-    { name: 'Learn Angular Animations', 
-      description: 'Learn how Angular helps with animating elements on your page',
-      status: 'active',
-      imageUrls: [
-        'http://www.personal.psu.edu/users/n/y/nys5290/Project-Image.jpg',
-        'http://www.prince2.site/wp-content/uploads/2015/09/project.jpg']
-    },
-    { name: 'Understanding Angular Basics', 
-      description: 'Understand what Angular is, how it works and how and when you might use it', 
-      status: 'inactive'},
-    { name: 'Learn JavaScript, HTML and CSS', 
-      description: 'Absolutely required to dive deep into Angular and all its features', 
-      status: 'critical'},
-  ];
   constructor(private http: Http, private authService: AuthService) { }
-
-  // loadProjects(): Observable<Project[]> {
-  //   const prjLoader = Observable.create((observer: Observer<Project[]>) => {
-  //     observer.next(this.projects);
-  //   });
-  //   return prjLoader;
-  // }
-
-  // getProjects() {
-  //   return this.projects;
-  // }
 
   getProjects(): Observable<Project[]> {
      return this.http.get(`http://localhost:3000/api/v1/projects`)
@@ -55,18 +22,10 @@ export class ProjectsService {
                   .catch(this.handleError);
   }
 
-  getProject(projectId: number) {
-    return this.projects[projectId];
-  }
-
   getProjectAPI(projectId: string): Observable<Project>  {
     return this.http.get(`http://localhost:3000/api/v1/projects/${projectId}`)
             .map(this.extractData)
             .catch(this.handleError);
-  }
-
-  deleteProject(project: Project) {
-    this.projects.splice(this.projects.indexOf(project), 1);
   }
 
   deleteProjectAPI(projectId: string) {
@@ -76,20 +35,12 @@ export class ProjectsService {
             .catch(this.handleError);
   }
 
-  addProject(project: Project) {
-    this.projects.push(project);
-  }
-
   addProjectAPI(project: Project): Observable<Project> {
     let headers = this.authService.getTokenHeader();
     headers.append('Content-Type', 'application/json');
     return this.http.post(`http://localhost:3000/api/v1/projects/new`, JSON.stringify(project), { headers: headers })
             .map(this.extractData)
             .catch(this.handleError);
-  }
-
-  editProject(oldPrj: Project, newPrj: Project) {
-    this.projects[this.projects.indexOf(oldPrj)] = newPrj;
   }
 
   editProjectAPI(projectId: string, newPrj: Project): Observable<Project> {
